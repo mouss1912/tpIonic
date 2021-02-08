@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{trailer.title}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">{{trailer.title}}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <div class="trailer-page">
+        <img [src]="trailer.poster">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-subtitle>
+                    <ion-chip *ngFor="let genre of trailer.genre">
+                        <ion-label color="secondary">
+                            {{genre}}
+                        </ion-label>
+                      </ion-chip>
+                </ion-card-subtitle>
+                <ion-card-title>{{trailer.title}}</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+                  Director :   {{trailer.directors}}
+            <div class="actors">Liste des auteurs : 
+                <ul>
+                    <li *ngFor="let acteur of trailer.actors">
+                        {{acteur}}
+                    </li>
+                </ul>
+            </div>
+            </ion-card-content>
+            <ion-note>Date de sortie : {{trailer.releasedate | date:'mediumDate'}} </ion-note>
+            <ion-button *ngIf="!!trailer.moviesite"  color="primary" (click)= "afficheLien()">Visitez le site du film</ion-button>
+        </ion-card>
+    </div>
+</ion-content>
